@@ -2,6 +2,13 @@
     "+998901234567": {
         "name": "Abdumalik To'ychiyev",
         "age": 18,
-        "password": "123"
+        "password": "123",
+        "history": [
+            {
+                "doctor": "Azizbek Xasanov",
+                "type": "Kibr",
+                "time": "2025-12-09 21:32:37"
+            }
+        ]
     }
 }
