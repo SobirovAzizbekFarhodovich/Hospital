@@ -1,0 +1,26 @@
+{
+    "abubakr": {
+        "name": "Dr. Alijonov Abubakr",
+        "password": "admin",
+        "type": "Pediatr (Bolalar shifokori)",
+        "bemorlar": []
+    },
+    "nodir": {
+        "name": "Dr. Nodir",
+        "password": "1111",
+        "type": "Stomatolog (Tish shifokori)",
+        "bemorlar": []
+    },
+    "azim": {
+        "name": "Dr. Azim",
+        "password": "2222",
+        "type": "Xirurg (Jarroh)",
+        "bemorlar": []
+    },
+    "aziz": {
+        "name": "Azizbek Xasanov",
+        "password": "aziz123",
+        "type": "Kibr",
+        "bemorlar": []
+    }
+}

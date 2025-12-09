@@ -1,53 +1,99 @@
 import os
 import time
+import json
 
-# Shifokorlar bazasi
-doctors_db = {
-    'abubakr': {
-        'name': 'Dr. Alijonov Abubakr',
-        'password': 'admin',
-        'type': 'Pediatr (Bolalar shifokori)',
-        'bemorlar': []
-    },
-    'nodir': {
-        'name': 'Dr. Nodir',
-        'password': '1111',
-        'type': 'Stomatolog (Tish shifokori)',
-        'bemorlar': []
-    },
-    'azim': {
-        'name': 'Dr. Azim',
-        'password': '2222',
-        'type': 'Xirurg (Jarroh)',
-        'bemorlar': []
-    }
-}
 
-# Foydalanuvchilar bazasi
-users_db = {
-    '+998901234567': {
-        'name': "Abdumalik To'ychiyev",
-        'age': 18,
-        'password': '123'
-    }
-}
+def load_json(filename):
+    try:
+        with open(filename, 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
 
+
+def save_json(filename, data):
+    try:
+        with open(filename, 'w') as f:
+            json.dump(data, f, indent=4)
+    except Exception as e:
+        print(f"Fayl saqlashda xato: {e}")
+
+doctors_db = load_json("doctors.json")
+users_db = load_json("users.json")
+admin_db = load_json("admin.json")
 
 
 def clear():
-    command = 'cls' if os.name == 'nt' else 'clear'
-    os.system(command)
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 YASHIL = '\033[32m'
 QIZIL = '\033[31m'
 SARIQ = '\033[33m'
 KOK = '\033[34m'
 RESET = '\033[0m'
+
 def print_color(text, color=RESET):
     print(f"{color}{text}{RESET}")
 
 def wait(seconds):
     time.sleep(seconds)
+
+
+
+def admin_panel():
+    while True:
+        clear()
+        print_color("--- ADMIN PANEL ---", SARIQ)
+        print("1. Doktorlarni ko‘rish")
+        print("2. Doktor qo‘shish")
+        print("3. Doktor o‘chirish")
+        print("0. Chiqish")
+
+        choice = input("\nTanlov: ")
+
+        if choice == "1":
+            clear()
+            print_color("--- DOKTORLAR RO‘YXATI ---", KOK)
+            if not doctors_db:
+                print("Hozircha shifokorlar yo‘q.")
+            else:
+                for k, d in doctors_db.items():
+                    print(f"ID: {k} | {d['name']} | {d['type']}")
+            input("\nQaytish uchun Enter...")
+
+        elif choice == "2":
+            clear()
+            print_color("--- YANGI DOKTOR QO‘SHISH ---", KOK)
+            doc_id = input("Doktor ID (login): ")
+            if doc_id in doctors_db:
+                print_color("Bu ID allaqachon mavjud!", QIZIL)
+                wait(1.5)
+                continue
+            name = input("Ism-familiya: ")
+            password = input("Parol: ")
+            type_ = input("Mutaxassislik: ")
+            doctors_db[doc_id] = {'name': name, 'password': password, 'type': type_, 'bemorlar': []}
+            save_json("doctors.json", doctors_db)
+            print_color("Doktor muvaffaqiyatli qo‘shildi!", YASHIL)
+            wait(1.5)
+
+        elif choice == "3":
+            clear()
+            print_color("--- DOKTOR O‘CHIRISH ---", KOK)
+            doc_id = input("O‘chirmoqchi bo‘lgan doktor ID: ")
+            if doc_id not in doctors_db:
+                print_color("Bunday ID mavjud emas!", QIZIL)
+            else:
+                del doctors_db[doc_id]
+                save_json("doctors.json", doctors_db)
+                print_color("Doktor o‘chirildi!", YASHIL)
+            wait(1.5)
+
+        elif choice == "0":
+            break
+        else:
+            print_color("Noto‘g‘ri tanlov!", QIZIL)
+            wait(1)
 
 
 
@@ -83,8 +129,8 @@ def doctor_panel(doc_username):
                 print(f"\nBemor qabul qilinmoqda: {patient['name']}...")
                 wait(2)
                 print_color("Ko'rik muvaffaqiyatli yakunlandi!", YASHIL)
-
                 current_doc['bemorlar'].pop(0)
+                save_json("doctors.json", doctors_db)
             
             input("\nDavom etish uchun Enterni bosing...")
 
@@ -95,6 +141,8 @@ def doctor_panel(doc_username):
         else:
             print_color("Noto'g'ri tanlov!", QIZIL)
             wait(1)
+
+
 
 def user_panel(phone):
     current_user = users_db[phone]
@@ -133,11 +181,9 @@ def user_panel(phone):
             if doc_choice in doctors_db:
                 selected_doc = doctors_db[doc_choice]
                 
-                new_appointment = {
-                    'name': current_user['name'],
-                    'phone': phone
-                }
+                new_appointment = {'name': current_user['name'], 'phone': phone}
                 selected_doc['bemorlar'].append(new_appointment)
+                save_json("doctors.json", doctors_db)
                 
                 print_color(f"\n{selected_doc['name']} qabuliga muvaffaqiyatli yozildingiz!", YASHIL)
                 wait(2)
@@ -150,12 +196,21 @@ def user_panel(phone):
             wait(1)
             break
 
-
-
 def login(user_type):
     clear()
     
-    if user_type == 'doctor':
+    if user_type == 'admin':
+        print_color("--- ADMIN KIRISH ---", SARIQ)
+        username = input("Login: ")
+        password = input("Parol: ")
+        
+        if username == admin_db['username'] and password == admin_db['password']:
+            admin_panel()
+        else:
+            print_color("Login yoki parol xato!", QIZIL)
+            wait(1.5)
+    
+    elif user_type == 'doctor':
         print_color("--- SHIFOKOR SIFATIDA KIRISH ---", SARIQ)
         print('Orqaga qaytish uchun: 0')
         username = input("Login: ")
@@ -175,24 +230,18 @@ def login(user_type):
         phone = input("Telefon raqamingiz (+998901234567): ")
         if phone == '0': return
         
-
         if phone not in users_db:
             print_color("\nRaqam bazada topilmadi. Ro'yxatdan o'tish:", KOK)
             name = input("Ism-familiyangizni kiriting: ")
             age = input("Yoshingizni kiriting: ")
             new_password = input("Yangi parol o'ylab toping: ")
             
-            users_db[phone] = {
-                'name': name,
-                'age': age,
-                'password': new_password
-            }
+            users_db[phone] = {'name': name, 'age': age, 'password': new_password}
+            save_json("users.json", users_db)
             print_color("Ro'yxatdan o'tish muvaffaqiyatli!", YASHIL)
             print("Tizimga kirilmoqda...")
             wait(1.5)
             user_panel(phone)
-            
-
         else:
             password = input("Parolingizni kiriting: ")
             if users_db[phone]['password'] == password:
@@ -203,19 +252,21 @@ def login(user_type):
                 print_color("Parol noto'g'ri!", QIZIL)
                 wait(2)
 
-
 while True:
     clear()
     print_color("=== SHIFOXONA TIZIMI ===", KOK)
-    print("1. Shifokor sifatida kirish")
-    print("2. Foydalanuvchi sifatida kirish")
+    print("1. Admin sifatida kirish")
+    print("2. Shifokor sifatida kirish")
+    print("3. Foydalanuvchi sifatida kirish")
     print("0. Dasturdan chiqish")
     
     main_choice = input("\nTanlovni kiriting: ")
     
     if main_choice == '1':
-        login('doctor')
+        login('admin')
     elif main_choice == '2':
+        login('doctor')
+    elif main_choice == '3':
         login('user')
     elif main_choice == '0':
         print_color("Dastur yakunlandi!", YASHIL)
