@@ -1,26 +1,50 @@
 {
     "abubakr": {
-        "name": "Dr. Alijonov Abubakr",
-        "password": "admin",
+        "name": "Dr. Abubakr Alijonov",
+        "password": "123",
         "type": "Pediatr (Bolalar shifokori)",
-        "bemorlar": []
+        "bemorlar": [],
+        "slots": {
+            "09:00-10:00": null,
+            "10:00-11:00": null,
+            "11:00-12:00": null
+        }
     },
     "nodir": {
-        "name": "Dr. Nodir",
-        "password": "1111",
-        "type": "Stomatolog (Tish shifokori)",
-        "bemorlar": []
+        "name": "Dr. Nodir Tursunov",
+        "password": "123",
+        "type": "Stomatolog",
+        "bemorlar": [],
+        "slots": {
+            "14:00-15:00": "+998507779985",
+            "15:00-16:00": null
+        }
     },
     "azim": {
-        "name": "Dr. Azim",
-        "password": "2222",
+        "name": "Dr. Azim Qodirov",
+        "password": "123",
         "type": "Xirurg (Jarroh)",
-        "bemorlar": []
+        "bemorlar": [],
+        "slots": {
+            "08:00-09:00": null
+        }
     },
-    "aziz": {
-        "name": "Azizbek Xasanov",
-        "password": "aziz123",
-        "type": "Kibr",
-        "bemorlar": []
+    "shahlo": {
+        "name": "Dr. Shahlo Karimova",
+        "password": "123",
+        "type": "Kardiolog (Yurak)",
+        "bemorlar": [],
+        "slots": {
+            "13:00-13:30": null,
+            "13:30-14:00": null,
+            "16:00-17:00": null
+        }
+    },
+    "jasur": {
+        "name": "Dr. Jasur Bekmurodov",
+        "password": "123",
+        "type": "Lor (Quloq-Tomoq-Burun)",
+        "bemorlar": [],
+        "slots": {}
     }
 }
