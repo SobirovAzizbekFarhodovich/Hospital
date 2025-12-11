@@ -31,5 +31,30 @@
                 "time": "2025-12-10 12:02:58"
             }
         ]
+    },
+    "333327505": {
+        "name": "Azizbek Sobirov",
+        "age": "18",
+        "password": "azizbek123",
+        "blocked": false,
+        "history": [
+            {
+                "doctor": "Azizbek Xasanov",
+                "type": "Kibr",
+                "time": "2025-12-10 14:05:15"
+            },
+            {
+                "doctor": "Dr. Jasur Bekmurodov",
+                "type": "Lor (Quloq-Tomoq-Burun)",
+                "time": "2025-12-11 10:49:39"
+            }
+        ]
+    },
+    "998333327505": {
+        "name": "Azizbek Sobirov",
+        "age": "18",
+        "password": "azizbek123",
+        "blocked": false,
+        "history": []
     }
 }
