@@ -9,6 +9,20 @@
                 "type": "Kibr",
                 "time": "2025-12-09 21:32:37"
             }
+        ],
+        "blocked": false
+    },
+    "333327505": {
+        "name": "Azizbek Sobirov",
+        "age": "18",
+        "password": "azizbek123",
+        "blocked": false,
+        "history": [
+            {
+                "doctor": "Azizbek Xasanov",
+                "type": "Kibr",
+                "time": "2025-12-10 14:05:15"
+            }
         ]
     }
 }

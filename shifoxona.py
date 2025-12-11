@@ -81,17 +81,20 @@ def admin_panel():
             name = input("Ism-familiya: ")
             password = input("Parol: ")
             type_ = input("Mutaxassislik: ")
+            if name and password and doc_id:
 
-            doctors_db[doc_id] = {
-                'name': name,
-                'password': password,
-                'type': type_,
-                'bemorlar': []
-            }
+                doctors_db[doc_id] = {
+                    'name': name,
+                    'password': password,
+                    'type': type_,
+                    'bemorlar': []
+                }
+                save_json("doctors.json", doctors_db)
+                print_color("Doktor muvaffaqiyatli qo‘shildi!", YASHIL)
+                wait(1.5)
+            else:
+                print_color("Malumot toliq emas", QIZIL)
 
-            save_json("doctors.json", doctors_db)
-            print_color("Doktor muvaffaqiyatli qo‘shildi!", YASHIL)
-            wait(1.5)
 
         elif choice == "3":
             clear()
