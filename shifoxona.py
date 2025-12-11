@@ -38,7 +38,7 @@ def update_id_card(phone, event_type, details):
     data["history"].append(record)
     save_json(filename, data)
 
-
+kas = load_json("kassalliklar.json")
 doctors_db = load_json("doctors.json")
 users_db = load_json("users.json")
 admin_db = load_json("admin.json")
@@ -72,6 +72,8 @@ def admin_panel():
         print("4. Foydalanuvchilar ro'yxati")
         print("5. Foydalanuvchini boshqarish")
         print("6. Foydalanuvchi ID Kartasini ko'rish")
+        print("7. Kassaliklar to'grisida ma'lumot qo'shish")
+        print("8. Kasalliklar ro'yxatini ko'rish")
         print("0. Chiqish")
 
         choice = input("\nTanlov: ")
@@ -206,12 +208,62 @@ def admin_panel():
                 print_color("Bu raqamga tegishli ID karta (fayl) topilmadi.", QIZIL)
             
             input("\nQaytish uchun Enter...")
+            
+        elif choice == "7":
+            add_kasallik()
+
+        elif choice == "8":
+            view_kasalliklar()
 
         elif choice == "0":
             break
         else:
             print_color("Noto'g'ri tanlov!", QIZIL)
             wait(1)
+
+def add_kasallik():
+    clear()
+    print_color("=== Yangi kasallik qo‘shish ===", SARIQ)
+
+    key = input("Kasallik tartib raqami (masalan: 11): ")
+
+    if key in kas:
+        print_color("Bu raqam allaqachon mavjud!", QIZIL)
+        wait(1.5)
+        return
+
+    nom = input("Kasallik nomi: ")
+    haqida = input("Kasallik haqida qisqacha: ")
+    sabab = input("Sabablari: ")
+    davolash = input("Davolash yo‘li: ")
+    shifokor = input("Qaysi shifokorga murojaat qilish kerak: ")
+
+    kas[key] = {
+        "nom": nom,
+        "haqida": haqida,
+        "sabab": sabab,
+        "davolash": davolash,
+        "shifokor": shifokor
+    }
+
+    save_json("kassalliklar.json", kas)
+
+    print_color("Yangi kasallik saqlandi!", YASHIL)
+    wait(1.5)
+
+
+def view_kasalliklar():
+    clear()
+    print_color("=== Barcha kasalliklar ro‘yxati ===", SARIQ)
+
+    for key, item in kas.items():
+        print_color(f"\n{key}. {item['nom']}", KOK)
+        print("  Haqida:", item['haqida'])
+        print("  Sabab:", item['sabab'])
+        print("  Davolash:", item['davolash'])
+        print("  Shifokor:", item['shifokor'])
+
+    input("\nOrqaga qaytish uchun ENTER bosing...")
 
 
 def doctor_panel(doc_username):
@@ -354,6 +406,7 @@ def user_panel(phone):
         print("2. Shifokor qabuliga yozilish")
         print("3. Mening eski kartam")
         print("4. Mening ID Kartam")
+        print("5. Kasallik yuzasidan maslaxat olish")
         print("0. Chiqish")
 
         choice = input("\nTanlov: ")
@@ -455,6 +508,9 @@ def user_panel(phone):
         
         elif choice == "4":
             show_full_id_card(phone)
+            
+        elif choice == '5':
+            Ai()
 
         elif choice == "0":
             break
@@ -462,6 +518,57 @@ def user_panel(phone):
         else:
             print_color("Noto'g'ri tanlov!", QIZIL)
             wait(1)
+
+
+
+def Ai():
+    while True:
+        clear()
+        print_color("=== AI TIBBIY MASLAHATCHI ===", KOK)
+        print("Kasallik turini tanlang:")
+
+        print("""
+1. Shamollash (ORVI)
+2. Gripp
+3. Bronxit
+4. Angina (Tomoq yallig'lanishi)
+5. Gastrit
+6. Migren (kuchli bosh og'rig'i)
+7. Allergiya
+8. Qandli diabet
+9. Yurak ishemik kasalligi
+10. O'pka yallig'lanishi (Pnevmoniya)
+0. Orqaga qaytish
+""")
+
+        choice = input("Tanlang: ")
+
+        if choice == "0":
+            return
+
+        if choice not in kas:
+            print_color("Noto‘g‘ri tanlov!", QIZIL)
+            time.sleep(1)
+            continue
+        
+        clear()
+        print_color("=== " + kas[choice]["nom"] + " ===", SARIQ)
+
+        print_color("\nKasallik haqida:", KOK)
+        print(kas[choice]["haqida"])
+
+        print_color("\nSabablari:", KOK)
+        print(kas[choice]["sabab"])
+
+        print_color("\nDavolash yo‘li:", KOK)
+        print(kas[choice]["davolash"])
+
+        print_color("\nQaysi shifokorga murojaat qilish kerak:", KOK)
+        print(kas[choice]["shifokor"])
+
+
+        input("\nOrqaga qaytish uchun Enter...")
+
 
 
 def login(user_type):

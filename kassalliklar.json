@@ -1,0 +1,79 @@
+{
+    "1": {
+        "nom": "Shamollash (ORVI)",
+        "haqida": "Viruslar sababli yuqadigan eng keng tarqalgan kasallik.",
+        "sabab": "Sovuq havo, immunitetning pasayishi, virus bilan aloqa.",
+        "davolash": "Issiq choy, dam olish, paratsetamol, burun yuvish.",
+        "shifokor": "Terapevt"
+    },
+    "2": {
+        "nom": "Gripp",
+        "haqida": "Kuchli virusli infektsiya bo\u00e2\u20ac\u02dclib, tez tarqaladi.",
+        "sabab": "A grippi, B grippi viruslari.",
+        "davolash": "Antivirus dori, ko\u00e2\u20ac\u02dcp suyuqlik, yotoq rejimi.",
+        "shifokor": "Terapevt yoki infeksionist"
+    },
+    "3": {
+        "nom": "Bronxit",
+        "haqida": "Bronxlar yallig'lanishi, yo\u00e2\u20ac\u02dctal bilan kechadi.",
+        "sabab": "Virus, bakteri, chekish, sovuq iqlim.",
+        "davolash": "Issiq ichimlik, inhalatsiya, mukolitiklar.",
+        "shifokor": "Pulmonolog"
+    },
+    "4": {
+        "nom": "Angina",
+        "haqida": "Tomoq bodom bezlari yallig'lanishi.",
+        "sabab": "Streptokokk bakteriyasi.",
+        "davolash": "Antibiotiklar, iliq suv bilan chayish.",
+        "shifokor": "LOR shifokori"
+    },
+    "5": {
+        "nom": "Gastrit",
+        "haqida": "Qorin shilliq qavati yallig'lanishi.",
+        "sabab": "Notog\u00e2\u20ac\u02dcri ovqatlanish, stress, H.Pylori bakteriyasi.",
+        "davolash": "Diyetaga rioya qilish, antikislota dorilar.",
+        "shifokor": "Gastroenterolog"
+    },
+    "6": {
+        "nom": "Migren",
+        "haqida": "Kuchli bosh og\u00e2\u20ac\u02dcrig\u00e2\u20ac\u02dci, ko\u00e2\u20ac\u02dcngil aynish bilan kechadi.",
+        "sabab": "Stress, genetik omillar, uyqusizlik.",
+        "davolash": "Og\u00e2\u20ac\u02dcriq qoldiruvchi, tinch joyda dam olish.",
+        "shifokor": "Nevropatolog"
+    },
+    "7": {
+        "nom": "Allergiya",
+        "haqida": "Organizmning allergenlarga sezgirligi ortishi.",
+        "sabab": "Chang, gullar, ovqat, dorilar, jun.",
+        "davolash": "Antigistamin dorilar, allergendan uzoq turish.",
+        "shifokor": "Allergolog"
+    },
+    "8": {
+        "nom": "Qandli diabet",
+        "haqida": "Qon tarkibida shakar ko\u00e2\u20ac\u02dcpayishi.",
+        "sabab": "Insulin yetishmovchiligi yoki sezmaslik.",
+        "davolash": "Insulin, dori ichish, dieta.",
+        "shifokor": "Endokrinolog"
+    },
+    "9": {
+        "nom": "Yurak ishemik kasalligi",
+        "haqida": "Yurakka qon kelishi kamayishi.",
+        "sabab": "Tomirlar torayishi, xolesterin ko\u00e2\u20ac\u02dcpayishi.",
+        "davolash": "Aspirin, nitroglitserin, sog\u00e2\u20ac\u02dclom turmush.",
+        "shifokor": "Kardiolog"
+    },
+    "10": {
+        "nom": "Pnevmoniya",
+        "haqida": "O\u00e2\u20ac\u02dcpkalarning jiddiy yallig'lanishi.",
+        "sabab": "Virus yoki bakteriya infeksiyasi.",
+        "davolash": "Antibiotiklar, fizioterapiya.",
+        "shifokor": "Pulmonolog"
+    },
+    "11": {
+        "nom": "suyak sinishi",
+        "haqida": "",
+        "sabab": "",
+        "davolash": "",
+        "shifokor": ""
+    }
+}
